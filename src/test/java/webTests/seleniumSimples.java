@@ -1,84 +1,102 @@
-//1- Pacote
+// 1 - Pacote
 package webTests;
 
-//2- Bibliotecas
+// 2 - Bibliotecas
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-//3- Classe
+import utils.Evidencias;
+
+// 3 - Classe
 public class seleniumSimples {
-    //3.1 - Atributos
+    // 3.1 - Atributos
 
-     WebDriver driver;                  //declar o objeto do Selenium WebDriver
+    WebDriver driver;                           // declarar o objeto do Selenium WebDriver
+    Evidencias evidencias;
+    static String dataHora = new SimpleDateFormat("yyyy-MM-dd HH-mm").getCalendar().getTime().toString();
 
-    //3.2 - Métodos e Funções
-   @BeforeMethod
-   public void inicar(){
-       //A- Início
-       //Aponta para onde está o driver do Chrome
-       System.setProperty("webdriver.chrome.driver", "drivers/chrome/91/chromedriver.exe");
-       // Instancia o objeto driver com um controlador do Chrome
-       driver =new ChromeDriver();
-       driver.manage().timeouts().implicitlyWait(60000, TimeUnit.MILLISECONDS);
+    // 3.2 - Métodos e Funções
+    @BeforeMethod
+    public void iniciar(){
+        // A - Início
+        // Aponta para onde está o driver do Chrome
+        System.setProperty("webdriver.chrome.driver", "drivers/chrome/91/chromedriver.exe");
+        // Instancia o objeto driver como um controlador do Chrome
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(60000, TimeUnit.MILLISECONDS);
+
+        evidencias = new Evidencias(); // instanciar
     }
 
     @AfterMethod
     public void finalizar(){
-        driver.close();
-        driver.quit();
+        // Parte C - Encerramento
+
+        driver.quit(); // Encerra o objeto do Selenium
+
     }
 
     @Test(priority = 1)
-    public void consultarCursoMantis(){
+    public void consultarCursoMantis() throws IOException {
+        String casoDeTeste = "Consultar Curso Mantis";
+        // B - Realizar o teste
+        driver.get("https://www.iterasys.com.br");                              // Abre o site alvo informado
+        evidencias.print(driver, dataHora,casoDeTeste, "Passo 1 - Abriu o site");
 
-               // B - Realizar o teste
-        driver.get("https://www.iterasys.com.br"); //Abre o site alvo do teste
-        driver.manage().window().setSize(new Dimension(1382, 744));
-        driver.findElement(By.id("searchtext")).click();
-        driver.findElement(By.id("searchtext")).clear();
-        driver.findElement(By.id("searchtext")).sendKeys("mantis");
+        driver.findElement(By.id("searchtext")).click();                        // Clica no campo de pesquisa
+        driver.findElement(By.id("searchtext")).clear();                        // Limpa o campo de pesquisa
+        driver.findElement(By.id("searchtext")).sendKeys("mantis");  // Escreve "mantis" no campo
 
-        driver.findElement(By.id("btn_form_search")).click();
+        evidencias.print(driver, dataHora,casoDeTeste,"Passo 2 - Digitou Mantis");
+        driver.findElement(By.id("btn_form_search")).click();                   // Clique na lupa
 
-        assertEquals(driver.findElement(By.cssSelector("h3")).getText(), "Cursos › \"mantis\""); //Mudar encoding para windows-1252
+        assertEquals(driver.findElement(By.cssSelector("h3")).getText(), "Cursos › \"mantis\"");
         //assertTrue(driver.findElement(By.cssSelector("h3")).getText().contains("mantis"));
+        //assertEquals(driver.findElement(By.cssSelector("h3:nth-child(1)")).getText(), "Cursos › \"mantis\"");
 
-        driver.findElement(By.cssSelector("span.comprar")).click();
+        evidencias.print(driver, dataHora,casoDeTeste,"Passo 3 - Exibiu a lista de cursos");
+        driver.findElement(By.cssSelector("span.comprar")).click();             // Clica no botão Matricule-se
+
         assertEquals(driver.findElement(By.cssSelector("span.item-title")).getText(), "Mantis");
         assertEquals(driver.findElement(By.cssSelector("span.new-price")).getText(), "R$ 49,99");
-
-
+        evidencias.print(driver, dataHora,casoDeTeste,"Passo 4 - Exibiu o carrinho de compras");
     }
+
     @Test(priority = 2, dependsOnMethods = {"consultarCursoMantis"})
-    public void consultarCursoCTFL(){
+    public void consultarCursoCTFL() throws IOException {
+        String casoDeTeste = "Consultar Curso CTFL";
 
-          // B - Realizar o teste
-        driver.get("https://www.iterasys.com.br"); //Abre o site alvo do teste
-        driver.manage().window().setSize(new Dimension(1382, 744));
+        // B - Realizar o teste
+        driver.get("https://www.iterasys.com.br");                              // Abre o site alvo informado
+        evidencias.print(driver, dataHora,casoDeTeste,"Passo 1 - Abriu o site");
 
-        driver.findElement(By.id("searchtext")).click();
-        driver.findElement(By.id("searchtext")).clear();
-        driver.findElement(By.id("searchtext")).sendKeys("preparatório ctfl");
+        driver.findElement(By.id("searchtext")).click();                        // Clica no campo de pesquisa
+        driver.findElement(By.id("searchtext")).clear();                        // Limpa o campo de pesquisa
+        driver.findElement(By.id("searchtext")).sendKeys("preparatório ctfl");  // Escreve "mantis" no campo
 
-        driver.findElement(By.id("btn_form_search")).click();
+        evidencias.print(driver, dataHora,casoDeTeste,"Passo 2 - Digitou preparatorio ctfl");
+        driver.findElement(By.id("btn_form_search")).click();                   // Clique na lupa
 
-        assertEquals(driver.findElement(By.cssSelector("h3")).getText(), "Cursos › \"preparatório ctfl\""); //Mudar encoding para windows-1252
+        assertEquals(driver.findElement(By.cssSelector("h3")).getText(), "Cursos › \"preparatório ctfl\"");
         //assertTrue(driver.findElement(By.cssSelector("h3")).getText().contains("mantis"));
+        //assertEquals(driver.findElement(By.cssSelector("h3:nth-child(1)")).getText(), "Cursos › \"mantis\"");
 
-        driver.findElement(By.cssSelector("span.comprar")).click();
-        assertEquals(driver.findElement(By.cssSelector("span.item-title")).getText(), "Preparatório CTFL");
+        evidencias.print(driver, dataHora,casoDeTeste,"Passo 3 - Exibiu a lista de cursos");
+        driver.findElement(By.cssSelector("span.comprar")).click();             // Clica no botão Matricule-se
+
+        assertEquals(driver.findElement(By.cssSelector("span.item-title")).getText().toUpperCase(), "PREPARATÓRIO CTFL");
         assertEquals(driver.findElement(By.cssSelector("span.new-price")).getText(), "R$ 169,00");
-
+        evidencias.print(driver, dataHora,casoDeTeste,"Passo 4 - Exibiu o carrinho de compras");
     }
 }
