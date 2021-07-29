@@ -19,17 +19,12 @@ dependencies {
     implementation group: 'info.cukes', name: 'cucumber-testng', version: '1.2.5'
 
 
-
-
-
-
-
 }
 
 test {
     useTestNG()
-           filter {
-               excludeTestsMatching "*apiTests*"
-               excludeTestsMatching "*unitTests*"
-           }
+    filter {
+        excludeTestsMatching "*apiTests*"
+        excludeTestsMatching "*unitTests*"
+    }
 }
