@@ -1,54 +1,68 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("comprarCursoPOEN.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("comprarCursoPO.feature");
 formatter.feature({
-  "line": 1,
-  "name": "Comprar Curso POEN",
+  "comments": [
+    {
+      "line": 1,
+      "value": "#language: pt"
+    }
+  ],
+  "line": 2,
+  "name": "Comprar Curso PO",
   "description": "",
-  "id": "comprar-curso-poen",
-  "keyword": "Feature"
+  "id": "comprar-curso-po",
+  "keyword": "Funcionalidade"
+});
+formatter.before({
+  "duration": 157500,
+  "status": "passed"
+});
+formatter.before({
+  "duration": 2534512300,
+  "status": "passed"
 });
 formatter.scenario({
-  "line": 2,
-  "name": "Pesquisar Curso com Clique e Incluir no Carrinho POEN",
-  "description": "",
-  "id": "comprar-curso-poen;pesquisar-curso-com-clique-e-incluir-no-carrinho-poen",
-  "type": "scenario",
-  "keyword": "Scenario"
-});
-formatter.step({
   "line": 3,
-  "name": "que acesso o site da Iterasys  POEN",
-  "keyword": "Given "
+  "name": "Pesquisar Curso com Clique e Incluir no Carrinho PO",
+  "description": "",
+  "id": "comprar-curso-po;pesquisar-curso-com-clique-e-incluir-no-carrinho-po",
+  "type": "scenario",
+  "keyword": "Cenario"
 });
 formatter.step({
   "line": 4,
-  "name": "pesquiso por \"Mantis\" POEN",
-  "keyword": "When "
+  "name": "que acesso o site da Iterasys  PO",
+  "keyword": "Dado "
 });
 formatter.step({
   "line": 5,
-  "name": "clico na Lupa POEN",
-  "keyword": "And "
+  "name": "pesquiso por \"Mantis\" PO",
+  "keyword": "Quando "
 });
 formatter.step({
   "line": 6,
-  "name": "vejo a lista de resultados para o curso \"Mantis\" POEN",
-  "keyword": "Then "
+  "name": "clico na Lupa PO",
+  "keyword": "E "
 });
 formatter.step({
   "line": 7,
-  "name": "clico em Matricule-se POEN",
-  "keyword": "Given "
+  "name": "vejo a lista de resultados para o curso \"Mantis\" PO",
+  "keyword": "Entao "
 });
 formatter.step({
   "line": 8,
-  "name": "confirmo o nome do curso como \"Mantis\" e o preco de \"R$ 49,99\" POEN",
-  "keyword": "Then "
+  "name": "clico em Matricule-se PO",
+  "keyword": "Quando "
+});
+formatter.step({
+  "line": 9,
+  "name": "confirmo o nome do curso como \"Mantis\" e o preco de \"R$ 49,99\" PO",
+  "keyword": "Entao "
 });
 formatter.match({
-  "location": "comprarCursoPOEN.queAcessoOSiteDaIterasysPO()"
+  "location": "comprarCursoPO.queAcessoOSiteDaIterasysPO()"
 });
 formatter.result({
-  "duration": 70851800,
+  "duration": 3658848500,
   "status": "passed"
 });
 formatter.match({
@@ -58,17 +72,17 @@ formatter.match({
       "offset": 14
     }
   ],
-  "location": "comprarCursoPOEN.pesquisoPorPO(String)"
+  "location": "comprarCursoPO.pesquisoPorPO(String)"
 });
 formatter.result({
-  "duration": 1674500,
+  "duration": 137991800,
   "status": "passed"
 });
 formatter.match({
-  "location": "comprarCursoPOEN.clicoNaLupaPO()"
+  "location": "comprarCursoPO.clicoNaLupaPO()"
 });
 formatter.result({
-  "duration": 83000,
+  "duration": 1911474700,
   "status": "passed"
 });
 formatter.match({
@@ -78,17 +92,17 @@ formatter.match({
       "offset": 41
     }
   ],
-  "location": "comprarCursoPOEN.vejoAListaDeResultadosParaOCursoPO(String)"
+  "location": "comprarCursoPO.vejoAListaDeResultadosParaOCursoPO(String)"
 });
 formatter.result({
-  "duration": 159400,
+  "duration": 46601800,
   "status": "passed"
 });
 formatter.match({
-  "location": "comprarCursoPOEN.clicoEmMatriculeSePO()"
+  "location": "comprarCursoPO.clicoEmMatriculeSePO()"
 });
 formatter.result({
-  "duration": 105700,
+  "duration": 2086847900,
   "status": "passed"
 });
 formatter.match({
@@ -102,10 +116,18 @@ formatter.match({
       "offset": 53
     }
   ],
-  "location": "comprarCursoPOEN.confirmoONomeDoCursoComoEOPrecoDePO(String,String)"
+  "location": "comprarCursoPO.confirmoONomeDoCursoComoEOPrecoDePO(String,String)"
 });
 formatter.result({
-  "duration": 124000,
+  "duration": 216200,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 360400,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 710654600,
   "status": "passed"
 });
 });
